@@ -1,0 +1,77 @@
+<div>
+  <h4>SpaceX Launch Programs</h4>
+
+  <div class="maincontainer">
+    <div class="leftsidebar">
+      <div>Filters</div>
+      <div style="border-bottom: 1px solid black">Launch Year</div>
+      <div style="display: flex; width: 100%; flex-wrap: wrap">
+        <div *ngFor="let val of yearList; let i = index" style="flex: 1 0 50%">
+          <div
+            [ngClass]="val.selected ? 'selected' : 'deselected'"
+            (click)="applyyearfilter(i)"
+          >
+            {{ val.year }}
+          </div>
+        </div>
+      </div>
+
+      <div style="border-bottom: 1px solid black">Sucessful Launch Year</div>
+      <div style="display: flex; width: 100%; flex-wrap: wrap">
+        <div *ngFor="let val of launcharr; let i = index" style="flex: 1 0 50%">
+          <div
+            [ngClass]="val.selected ? 'selected' : 'deselected'"
+            (click)="handlelaunch(val, i)"
+          >
+            {{ val.value }}
+          </div>
+        </div>
+      </div>
+
+      <div style="border-bottom: 1px solid black">Sucessful Landing</div>
+      <div style="display: flex; width: 100%; flex-wrap: wrap">
+        <div
+          *ngFor="let val of landingarr; let i = index"
+          style="flex: 1 0 50%"
+        >
+          <div
+            [ngClass]="val.selected ? 'selected' : 'deselected'"
+            (click)="handlelanding(val, i)"
+          >
+            {{ val.value }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contentarea">
+      <div class="child" *ngFor="let val of totalSpacexList">
+        <img
+          style="height: 100px"
+          src="{{ val.links.mission_patch_small }}"
+          alt="Oops"
+        />
+
+        <div>{{ val.mission_name }}#{{ val.flight_number }}</div>
+        <div>Mission IDs</div>
+        <div *ngFor="let data of val.mission_id">
+          <ul>
+            <li>
+              {{ data }}
+            </li>
+          </ul>
+        </div>
+
+        <div>Launch Year : {{ val.launch_year }}</div>
+        <div>Successful Launch : {{ val.launch_success }}</div>
+        <div>Successful Landing : {{ val.launch_landing }}</div>
+      </div>
+
+      <div *ngIf="!isLoading && totalSpacexList.length === 0">
+        No Data Found
+      </div>
+
+      <div *ngIf="isLoading">Loading</div>
+    </div>
+  </div>
+</div>

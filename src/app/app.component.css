@@ -1,0 +1,54 @@
+.maincontainer {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.leftsidebar {
+  flex: 1 0 20%;
+}
+
+.contentarea {
+  flex: 1 0 80%;
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.child {
+  flex-basis: 21%;
+  margin: 5px;
+  height: 200px;
+  padding: 10px;
+  background-color: #cec9c8;
+  font-size: 10px;
+}
+
+.selected {
+  border-radius: 1px;
+  padding: 10px;
+  margin: 10px;
+  cursor: pointer;
+  background: green;
+}
+
+.deselected {
+  border-radius: 1px;
+  padding: 10px;
+  margin: 10px;
+  cursor: pointer;
+  background-color: lightgreen;
+}
+
+@media screen and (max-width: 700px) {
+  .child {
+    flex: 1 0 100%; /* explanation below */
+  }
+}
+
+@media screen and (min-device-width: 701px) and (max-device-width: 1024px) {
+  .child {
+    flex: 1 0 44%; /* explanation below */
+  }
+}
